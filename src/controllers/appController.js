@@ -12,11 +12,11 @@ exports.retrieveAllApps = (req, res, next) => {
 }
 
 exports.retrieveApp = (req, res, next) => {
-    console.log(req);
     retrieve();
     async function retrieve () {
-        console.log(req.param.appName);
-        //let appData        =     await retrieveAppData.retrieveAllApps();
-        // res.send(appData);
+        console.log(req.params.appName);
+        let appData        =     await retrieveAppData.retrieveApp(req.params.appName);
+        console.log(appData)
+        res.send(appData);
     }
 }
