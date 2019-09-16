@@ -1,4 +1,4 @@
-const validations = require('../models/validations');
+const retrieveUserData = require('../models/retrieveUserData');
 
 
 exports.registerUser = (req, res, next) => {
@@ -15,12 +15,12 @@ exports.registerUser = (req, res, next) => {
     register();
     
     async function register () {
-        let alreadyPresent        =     await validations.validCredentials(user.email);
+        let alreadyPresent        =     await retrieveUserData.validCredentials(user.email);
 
         if(alreadyPresent){
             return res.send("User already present")
         }else { 
-            let response          =     await validations.registerUser(user);
+            let response          =     await retrieveUserData.registerUser(user);
             user.password       =     "****"
             return res.send('registered user with details \n'+JSON.stringify(user));
         }

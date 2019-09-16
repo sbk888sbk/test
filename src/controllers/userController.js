@@ -1,4 +1,4 @@
-const validations = require('../models/validations');
+const retrieveUserData = require('../models/retrieveUserData');
 
 
 exports.validateUser = (req, res, next) => {
@@ -15,7 +15,7 @@ exports.validateUser = (req, res, next) => {
     checkCredentials();
 
     async function checkCredentials () {
-        let user        =     await validations.validCredentials(email);
+        let user        =     await retrieveUserData.validCredentials(email);
         if(!user){
             response.message =  "Our records do not have your email! Please register"
         } else {

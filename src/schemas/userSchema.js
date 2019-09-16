@@ -1,4 +1,6 @@
 const mongoose = require('mongoose')
+const usersdb = require('../db/database');
+
 
 const userSchema = new mongoose.Schema({
   email: {
