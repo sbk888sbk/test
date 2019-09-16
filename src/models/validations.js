@@ -1,5 +1,6 @@
 const user = require('../schemas/userSchema');
 var userResponse;
+
 exports.validCredentials = async function (email) {
     var uE = await  user.findOne({email}, (err, eM) => {
             if(err) {
@@ -10,4 +11,13 @@ exports.validCredentials = async function (email) {
             }
         });
         return userResponse;        
+}
+
+exports.registerUser = async function(userObj){
+    var uR = new user(userObj);
+    uR.save(function(err){
+        if(err){
+            return 'error occured during register'
+        }
+    })
 }
