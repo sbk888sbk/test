@@ -29,7 +29,7 @@ exports.validateUser = (req, res, next) => {
 
             if(email === user.email){
                 console.log('Email Id exists')
-                
+
                 if(password === user.password){
                     response.status     = "valid"
                     response.userRole   = user.userRole;
@@ -51,13 +51,4 @@ exports.validateUser = (req, res, next) => {
     }
 }
 
-exports.registerUser = (req, res, next) => {
 
-    res.send(JSON.parse('{"status" : "registered","userRole" : userRole, "message" : "Registration Successful"}'));
-}
-
-exports.deleteUser = (req, res, next) => {
-
-
-    res.send(JSON.parse('{"status" : "deleted","userRole" : userRole, "message" : "Deleted User from the database"}'));
-}
