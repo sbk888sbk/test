@@ -10,26 +10,44 @@ const validations = require('../models/validations');
 
 exports.validateUser = (req, res, next) => {
     console.log("Email id submitted",req.body.email)
+
+
     let email       =   req.body.email;
     let password    =   req.body.password;
-    async () => {
-    let user        =     await validations.validCredentials(email);
-        console.log(user)
+    var response    =   {
+        status    : "invalid",
+        userRole  : "NA",
+        message   : ""
+    }
+    checkCredentials();
+
+    async function checkCredentials () {
+        let user        =     await validations.validCredentials(email);
         if(!user){
-            res.send("No data found")
+            response.message =  "Our records do not have your email! Please register"
         } else {
-            console.log("Inside else")
+
             if(email === user.email){
-                if(password = validations.validCredentials(password).password){
-                    res.send(JSON.parse('{"status" : "valid","userRole" : userRole, "message" : "Login Successfull"}'));
+                console.log('Email Id exists')
+                
+                if(password === user.password){
+                    response.status     = "valid"
+                    response.userRole   = user.userRole;
+                    response.message    = "Login Successfull" ;
+                    res.send(JSON.stringify(response));
                 }
                 else{
-                    res.send(JSON.parse('{"status" : "invalid","userRole" : NA, "message" : "Invalid Password"}'))
+                    response.message = "Invalid Password";
+                    res.send(JSON.stringify(response));
                 }
+
             } else{
-                res.send(JSON.parse('{"status" : "invalid","userRole" : "NA", "message" : "Invalid Email ID"}'))
+                response.message = "Invalid Email ID";
+                res.send(JSON.stringify(response));
             }
         }
+
+
     }
 }
 

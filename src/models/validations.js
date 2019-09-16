@@ -1,16 +1,13 @@
 const user = require('../schemas/userSchema');
-var usersResults;
+var userResponse;
 exports.validCredentials = async function (email) {
-    var users = await  user.find({email}, (err, docs) => {
+    var uE = await  user.findOne({email}, (err, eM) => {
             if(err) {
                 return 'error occured'
             } else {
-                usersResults = docs
-                console.log('User result', usersResults)    
-                return docs;            
+                userResponse = eM    
+                return eM;            
             }
-
         });
-        console.log("Users is " , usersResults)
-        return usersResults;        
+        return userResponse;        
 }
