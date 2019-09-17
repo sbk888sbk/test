@@ -15,23 +15,36 @@ exports.retrieveAllApps = (req, res, next) => {
 exports.retrieveApp = (req, res, next) => {
     retrieve();
     async function retrieve () {
-        console.log(req.params.appName);
         let appData        =     await retrieveAppData.retrieveApp(req.params.appName);
-        console.log(appData)
         res.send(appData);
     }
 }
 
 exports.addAppDetails = (req, res, next) => {
+
     var app = {
+        version             : 0,
+        latest              : true,
         appName             : req.body.appName,
         appDescription      : req.body.appDescription
-    }    
-    console.log(req.body)
-    insert();
+    } 
 
-    async function insert () {
-        let appData        =     await modifyAppData.insertApp(app);
-        res.send("App Details added successfully")
+    checkAppAndInsert();
+    
+    async function checkAppAndInsert () {
+        //check if app is alredy present
+        let appData        =     await retrieveAppData.retrieveApp(app.appName);
+
+        // if present increment version and set update latest flag for old data to false
+        if(appData){
+            await retrieveAppData.updateOldAppData(app.appName)
+            app.version = appData.version + 1
+        }
+
+        //inserting app with modifications(if alredy present)
+        let a        =     await modifyAppData.insertApp(app);
+        console.log("Inserted app :",app.appName," with version :", app.version)
+        return res.send("App Details added successfully") 
     }
 }
+

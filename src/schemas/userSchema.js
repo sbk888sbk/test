@@ -1,11 +1,10 @@
 const mongoose = require('mongoose')
-const usersdb = require('../db/database');
+
 
 
 const userSchema = new mongoose.Schema({
   email: {
     type: String,
-    unique: true,
     required: [true, 'Email Id  is required']
   },
   password: {
@@ -26,5 +25,5 @@ const userSchema = new mongoose.Schema({
     default : []
   }
 })
-
+//userSchema.index({email:1},{unique:true});
 module.exports = mongoose.model('user',userSchema, collection='users')
