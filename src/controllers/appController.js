@@ -48,3 +48,14 @@ exports.addAppDetails = (req, res, next) => {
     }
 }
 
+exports.retrieveAppHistory = (req, res, next)  =>{
+    app = {
+        appName :req.params.appName
+    }
+    console.log(req)
+    history();
+    async function history () {
+    let appData        =     await retrieveAppData.retrieveAppHistory(app.appName);
+    return res.send(appData);
+    }
+}

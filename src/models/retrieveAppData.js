@@ -38,3 +38,16 @@ exports.updateOldAppData = async function (appName) {
     });
     return appDetails;       
 }
+
+
+exports.retrieveAppHistory = async function (appName) {
+    var a = await  apps.find({appName}, '-_id -__v', (err, aD) => {
+        if(err) {
+            return 'error occured'
+        } else {
+            appDetails = aD    
+            return aD;            
+        }
+    });
+    return appDetails;       
+}
