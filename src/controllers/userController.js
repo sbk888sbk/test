@@ -2,9 +2,8 @@ const retrieveUserData = require('../models/retrieveUserData');
 
 
 exports.validateUser = (req, res, next) => {
+    console.log(req)
     console.log("Email id submitted",req.body.email)
-
-
     let email       =   req.body.email;
     let password    =   req.body.password;
     var response    =   {
