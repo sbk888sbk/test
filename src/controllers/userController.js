@@ -18,9 +18,10 @@ exports.validateUser = (req, res, next) => {
         console.log("Validating Credentials")
         let user        =     await retrieveUserData.validCredentials(email);
         if(!user){
+            console.log("Email Id does not exists")
             response.message =  "Our records do not have your email! Please register"
+            return res.send(response)
         } else {
-
             if(email === user.email){
                 console.log('Email Id exists')
 

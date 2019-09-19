@@ -60,7 +60,7 @@ exports.retrieveAppHistory = (req, res, next)  => {
     }
 }
 
-exports.uploadFile = (req, res, next) => {
-    console.log(req)
-    return res.send('file read');
-}
+// exports.uploadFile = (req, res, next) => {
+//     console.log(req)
+//     return res.send('file read');
+// }
