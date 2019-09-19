@@ -2,7 +2,7 @@ const apps = require('../schemas/appSchema');
 
 var  appDetails ;
 exports.retrieveAllApps = async function () {
-    var a = await  apps.find({latest:true}, '-_id', (err, aD) => {
+    var a = await  apps.find({latest:true}, '-_id -__v', (err, aD) => {
         if(err) {
             return 'error occured'
         } else {

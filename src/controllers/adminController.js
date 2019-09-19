@@ -15,14 +15,17 @@ exports.registerUser = (req, res, next) => {
     register();
     
     async function register () {
-        let alreadyPresent        =     await retrieveUserData.validCredentials(user.userEmail);
+        let alreadyPresent        =     await retrieveUserData.validCredentials(user.email);
+        console.log("already present", alreadyPresent)
 
         if(alreadyPresent){
-            return res.send("User already present")
+            console.log(alreadyPresent.email," already exists")
+            return res.send({"message":"User already present"})
         }else { 
             let response          =     await retrieveUserData.registerUser(user);
-            user.password       =     "****"
-            return res.send('registered user with details \n'+JSON.stringify(user));
+            user.password       =     "****";
+            console.log('registered user with details \n'+JSON.stringify(user))
+            return res.send({"message" :'registered user with details \n'+JSON.stringify(user)});
         }
     }
 
