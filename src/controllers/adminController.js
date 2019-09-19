@@ -5,8 +5,8 @@ exports.registerUser = (req, res, next) => {
 
     //creating an user object to insert into db
     var user        =   {
-        email       :   req.body.email,
-        password    :   req.body.password,
+        email       :   req.body.userEmail,
+        password    :   req.body.userPassword,
         userRole    :   req.body.userRole,
         hasAccessTo :   req.body.hasAccessTo,
         applicationList : req.body.applicationList
@@ -15,7 +15,7 @@ exports.registerUser = (req, res, next) => {
     register();
     
     async function register () {
-        let alreadyPresent        =     await retrieveUserData.validCredentials(user.email);
+        let alreadyPresent        =     await retrieveUserData.validCredentials(user.userEmail);
 
         if(alreadyPresent){
             return res.send("User already present")
