@@ -15,6 +15,7 @@ exports.validateUser = (req, res, next) => {
     checkCredentials();
 
     async function checkCredentials () {
+        console.log("Validating Credentials")
         let user        =     await retrieveUserData.validCredentials(email);
         if(!user){
             response.message =  "Our records do not have your email! Please register"
