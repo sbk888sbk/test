@@ -48,7 +48,7 @@ exports.addAppDetails = (req, res, next) => {
     }
 }
 
-exports.retrieveAppHistory = (req, res, next)  =>{
+exports.retrieveAppHistory = (req, res, next)  => {
     app = {
         appName :req.params.appName
     }
@@ -58,4 +58,9 @@ exports.retrieveAppHistory = (req, res, next)  =>{
     let appData        =     await retrieveAppData.retrieveAppHistory(app.appName);
     return res.send(appData);
     }
+}
+
+exports.uploadFile = (req, res, next) => {
+    console.log(req)
+    return res.send('file read');
 }
