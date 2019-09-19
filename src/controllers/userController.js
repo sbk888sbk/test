@@ -5,7 +5,7 @@ exports.validateUser = (req, res, next) => {
     console.log(req)
     console.log("Email id submitted",req.body.userEmail)
     let email       =   req.body.userEmail;
-    let password    =   req.body.password;
+    let password    =   req.body.userPassword;
     var response    =   {
         status    : "invalid",
         userRole  : "NA",
@@ -15,7 +15,7 @@ exports.validateUser = (req, res, next) => {
 
     async function checkCredentials () {
         console.log("Validating Credentials")
-        let user        =     await retrieveUserData.validCredentials(userEmail);
+        let user        =     await retrieveUserData.validCredentials(email);
         if(!user){
             console.log("Email Id does not exists")
             response.message =  "Our records do not have your email! Please register"
