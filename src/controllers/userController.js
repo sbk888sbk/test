@@ -2,7 +2,7 @@ const retrieveUserData = require('../models/retrieveUserData');
 
 
 exports.validateUser = (req, res, next) => {
-    console.log("Email id submitted",req)
+    console.log("Email id submitted",user.email);
     let email       =   req.body.userEmail;
     let password    =   req.body.userPassword;
     var response    =   {
@@ -13,7 +13,7 @@ exports.validateUser = (req, res, next) => {
     checkCredentials();
 
     async function checkCredentials () {
-        console.log("Validating Credentials", email);
+        console.log("Validating Credentials :", email);
         let user        =     await retrieveUserData.validCredentials(email);
         if(!user){
             console.log("Email Id does not exists")
