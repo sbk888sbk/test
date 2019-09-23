@@ -6,7 +6,8 @@ app.use(cors());
 
 
 PORT = process.env.PORT || 4000;
-app.use(bodyParser.urlencoded({extended:false}));
+app.use(bodyParser.urlencoded({extended:true}));
+app.use(bodyParser.json())
 
 //custom routes
 const userRoutes = require('./src/routes/userRoutes');
