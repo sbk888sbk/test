@@ -27,7 +27,7 @@ exports.validateUser = (req, res, next) => {
                     response.status     = "valid"
                     response.userRole   = user.userRole;
                     response.message    = "Login Successfull" ;
-                    response.appsAccess = user.applicationList;
+                    response.applicationList = user.applicationList;
                 }
                 else{
                     response.message = "Invalid Password";
