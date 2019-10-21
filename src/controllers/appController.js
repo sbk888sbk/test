@@ -26,7 +26,15 @@ exports.addAppDetails = (req, res, next) => {
         version             : 0,
         latest              : true,
         appName             : req.body.appName,
-        appDescription      : req.body.appDescription
+        appDescription      : req.body.appDescription,
+        appServerInfo       : req.body.appServerInfo,
+        dbServerInfo        : req.body.dbServerInfo,
+        ihsServerInfo       : req.body.ihsServerInfo,
+        healthCheckUrl      : req.body.healthCheckUrl,
+        logsPath            : req.body.logsPath,
+        testIds             : req.body.testIds,
+        latestCodePath      : req.body.latestCodePath,
+        documentsPath       : req.body.documentsPath
     } 
 
     checkAppAndInsert();
@@ -35,10 +43,13 @@ exports.addAppDetails = (req, res, next) => {
         //check if app is alredy present
         let appData        =     await retrieveAppData.retrieveApp(app.appName);
 
-        // if present increment version and set update latest flag for old data to false
+        // if present increment version and  update "latest" flag for old data to false
+        console.log("appData.version",appData.version)
         if(appData){
-            await retrieveAppData.updateOldAppData(app.appName)
-            app.version = appData.version + 1
+            await retrieveAppData.updateOldAppData(app.appName);
+            console.log("appversion befpre :",appData.version);
+            app.version = appData.version + 1 ;
+            console.log("appversion after:",app.version)
         }
 
         //inserting app with modifications(if alredy present)
