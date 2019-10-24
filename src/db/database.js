@@ -1,5 +1,5 @@
 let mongoose = require('mongoose');
-
+mongoose.set('useFindAndModify', false);
 
 
 let usersdb ='mongodb+srv://admin:admin@testcluster-y5jh4.mongodb.net/users?retryWrites=true&w=majority'
